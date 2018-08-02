@@ -1,0 +1,28 @@
+{
+  "name": "slack-greet",
+  "version": "1.0.0",
+  "description": "Greets my boss every morning.",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "querystring": "^0.2.0",
+    "request": "^2.87.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmandev/slack-greet.git"
+  },
+  "keywords": [
+    "slack"
+  ],
+  "author": "Emmanuel Tierra",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/emmandev/slack-greet/issues"
+  },
+  "homepage": "https://github.com/emmandev/slack-greet#readme"
+}
