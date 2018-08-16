@@ -18,7 +18,10 @@ let quotes = class RickAndMortyQuotes {
             let quote = `Didn't get a quote, something's wrong, probably a Jerry.`;
 
             if (!error && response.statusCode == 200) { 
-                quote = JSON.parse(body).data[0];
+                quote = '> ' + JSON.parse(body).data[0];
+                quote += `
+                \`App requested by J-Dog\`
+                `;
             }
 
             quote = censor.filter(quote);
