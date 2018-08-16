@@ -1,6 +1,7 @@
 'use strict';
 
 let request = require('request');
+let censor = require('profanity-censor');
 
 let quotes = class RickAndMortyQuotes {
 
@@ -19,6 +20,8 @@ let quotes = class RickAndMortyQuotes {
             if (!error && response.statusCode == 200) { 
                 quote = JSON.parse(body).data[0];
             }
+
+            quote = censor.filter(quote);
 
             resolve(quote);
         });
