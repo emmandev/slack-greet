@@ -3,8 +3,6 @@
 require('dotenv').config();
 
 let argv = require('minimist');
-let request = require('request');
-let querystring = require('querystring');
 
 let args = argv(
     process.argv.slice(2), 
@@ -27,23 +25,17 @@ let args = argv(
 
 if(args.cmd === 'greet'){
 
+    let slack = require('./greet.js');
+
     let message = {
         token: process.env.SLACK_TOKEN,
         channel: args.channel,
         as_user: args['as-user'],
         text: args.text
     }
+
+    let s = new slack(message);
     
-    let qs = querystring.stringify(message);
-    
-    let path = 'http://slack.com/api/chat.postMessage?' + qs;
-    
-    request(path, function(error, response, body){
-        if (!error && response.statusCode == 200) { 
-            console.log('Success');
-        } else { 
-            console.log(error);
-        }
-    });
+    s.postMessage();
 
 }
