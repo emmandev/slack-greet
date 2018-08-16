@@ -9,8 +9,8 @@ let slack = class Slack{
         this.options = options;
     }
 
-    setText(text){
-        this.options.text = text;
+    setOptions(options){
+        this.options = Object.assign(this.options, options);
     }
 
     postMessage(){
