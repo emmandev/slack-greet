@@ -3,6 +3,7 @@
 require('dotenv').config();
 
 let argv = require('minimist');
+let slack = require('./greet.js');
 
 let args = argv(
     process.argv.slice(2), 
@@ -23,19 +24,16 @@ let args = argv(
     }
 );
 
-if(args.cmd === 'greet'){
+let message = {
+    token: process.env.SLACK_TOKEN,
+    channel: args.channel,
+    as_user: args['as-user']
+}
+let s = new slack(message);
 
-    let slack = require('./greet.js');
-
-    let message = {
-        token: process.env.SLACK_TOKEN,
-        channel: args.channel,
-        as_user: args['as-user'],
-        text: args.text
-    }
-
-    let s = new slack(message);
-    
-    s.postMessage();
-
+switch(args.cmd){
+    case 'greet':
+        s.setText(args.text);
+        s.postMessage();
+    break;
 }
