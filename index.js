@@ -34,14 +34,16 @@ let s = new slack(message);
 
 switch(args.cmd){
     case 'greet':
-        s.setText(args.text);
+        s.setOptions({text: args.text});
         s.postMessage();
     break;
 
     case 'ram':
         let r = new ram();
         r.getQuotePromise().then(quote => {
-            s.setText(quote);
+            let options = r.slackOptions();
+            options.text = quote;
+            s.setOptions(options);
             s.postMessage();
         });
     break;
