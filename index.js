@@ -25,21 +25,25 @@ let args = argv(
     }
 );
 
-let message = {
-    token: process.env.SLACK_TOKEN,
-    channel: process.env.SLACK_CHANNEL,
-    as_user: true,
-    text: "Good morning ser"
-}
+if(args.cmd === 'greet'){
 
-let qs = querystring.stringify(message);
-
-let path = 'http://slack.com/api/chat.postMessage?' + qs
-
-request(path, function(error, response, body){
-    if (!error && response.statusCode == 200) { 
-        console.log('Success');
-    } else { 
-        console.log(error);
+    let message = {
+        token: process.env.SLACK_TOKEN,
+        channel: args.channel,
+        as_user: args['as-user'],
+        text: args.text
     }
-});
+    
+    let qs = querystring.stringify(message);
+    
+    let path = 'http://slack.com/api/chat.postMessage?' + qs;
+    
+    request(path, function(error, response, body){
+        if (!error && response.statusCode == 200) { 
+            console.log('Success');
+        } else { 
+            console.log(error);
+        }
+    });
+
+}
