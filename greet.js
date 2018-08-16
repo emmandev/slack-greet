@@ -9,6 +9,10 @@ let slack = class Slack{
         this.options = options;
     }
 
+    setOptions(options){
+        this.options = Object.assign(this.options, options);
+    }
+
     postMessage(){
         let qs = querystring.stringify(this.options);
 

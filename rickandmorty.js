@@ -27,6 +27,14 @@ let quotes = class RickAndMortyQuotes {
         });
     }
 
+    slackOptions(){
+        return {
+            as_user: false,
+            username: 'Rick and Morty Quotes',
+            icon_url: 'https://i.imgur.com/Qa0dVgk.png'
+        };
+    }
+
 };
 
 module.exports = quotes;
