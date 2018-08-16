@@ -4,6 +4,7 @@ require('dotenv').config();
 
 let argv = require('minimist');
 let slack = require('./greet.js');
+let ram = require('./rickandmorty');
 
 let args = argv(
     process.argv.slice(2), 
@@ -35,5 +36,13 @@ switch(args.cmd){
     case 'greet':
         s.setText(args.text);
         s.postMessage();
+    break;
+
+    case 'ram':
+        let r = new ram();
+        r.getQuotePromise().then(quote => {
+            s.setText(quote);
+            s.postMessage();
+        });
     break;
 }
